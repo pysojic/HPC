@@ -11,5 +11,7 @@ include_directories(include)
 
 add_executable(HPC1 Assignment_A.cpp)
 
+target_compile_options(HPC1 PRIVATE -O2 -march=native) # Use for debug: -O0 -g -Wall -Wextra -Wpedantic
+
 # Link Eigen3 to the target
 target_link_libraries(HPC1 PRIVATE Eigen3::Eigen)
