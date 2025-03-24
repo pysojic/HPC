@@ -1,3 +1,15 @@
+/*
+▶ Due: March 24 by 2 PM.
+▶ Write a function to price European Call options using Black
+Scholes formula.
+▶ Measure time taken to price 1 million (distinct) options. Use
+random data to initialize parameters for each option.
+▶ You are not required to use techniques such as
+vectorization/multithreading for this assignment.
+▶ The Aim of this assignment is to get the students to think
+about performance and set the stage for the week 1 lecture.
+*/
+
 #include <random>
 #include <algorithm>
 #include <iostream>
