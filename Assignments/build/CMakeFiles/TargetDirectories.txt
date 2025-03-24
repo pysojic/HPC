@@ -1,0 +1,3 @@
+/Users/py/Documents/UChicago/Courses/Spring_2025/HPC/Assignments/build/CMakeFiles/HPC1.dir
+/Users/py/Documents/UChicago/Courses/Spring_2025/HPC/Assignments/build/CMakeFiles/edit_cache.dir
+/Users/py/Documents/UChicago/Courses/Spring_2025/HPC/Assignments/build/CMakeFiles/rebuild_cache.dir
