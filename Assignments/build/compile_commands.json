@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/Users/py/Documents/UChicago/Courses/Spring_2025/HPC/Assignments/build",
-  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/py/Documents/UChicago/Courses/Spring_2025/HPC/Assignments/include -isystem /opt/homebrew/include/eigen3 -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -o CMakeFiles/HPC1.dir/Assignment_A.cpp.o -c /Users/py/Documents/UChicago/Courses/Spring_2025/HPC/Assignments/Assignment_A.cpp",
-  "file": "/Users/py/Documents/UChicago/Courses/Spring_2025/HPC/Assignments/Assignment_A.cpp",
-  "output": "CMakeFiles/HPC1.dir/Assignment_A.cpp.o"
-}
-]
