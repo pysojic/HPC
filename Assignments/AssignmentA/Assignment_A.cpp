@@ -21,8 +21,9 @@ about performance and set the stage for the week 1 lecture.
 
 inline float norm_cdf(float x) 
 {
+    static float inv_sqrt = std::sqrtf(2.0f);
     // Use std::erff and std::sqrtf for float functions
-    return 0.5f * (1.0f + std::erff(x / std::sqrtf(2.0f)));
+    return 0.5f * (1.0f + std::erff(x / inv_sqrt));
 }
 
 Eigen::MatrixXf generate_data(size_t size)
