@@ -33,13 +33,13 @@ int main()
     std::mt19937_64 mt(rd());
     std::uniform_int_distribution<int> dist(0, 100);
 
-    Matrix<int, 100, 100> m(dist, mt);
-    Matrix<int, 100, 100> m2(dist, mt);
+    Matrix<int, 2, 2> m{{1,2}, {3,4}};
+    Matrix<int, 2, 2> m2{{4,5},{6,7}};
 
-    Matrix<int, 100, 100> mult;
+    Matrix<int, 2, 2> mult;
     {
         ScopedTimer timer{"Matrix multiplication duration (STL): "};
-        mult = m * m2; 
+        mult = matrix_mult(m, m2); 
     }   
 
     // mult.print();

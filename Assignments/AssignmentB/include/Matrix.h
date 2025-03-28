@@ -227,3 +227,18 @@ void Matrix<T, N, M>::print() const
 		std::cout << std::endl;
 	}
 }
+
+template <typename T, size_t N>
+Matrix<T,N,N> matrix_mult(const Matrix<T,N,N>& A, const Matrix<T,N,N>& B)
+{
+    Matrix<T, N, N> C;
+    // Compute the transpose of B to make accessing columns easier
+    auto B_T = B.transpose(); // B_T is a Matrix<T, P, M>
+    for (size_t i = 0; i < N; ++i) {
+        for (size_t j = 0; j < N; ++j) {
+            // Dot product of row i of A and row j of B_T (which is column j of B)
+            C[i][j] = A[i].dot_product(B[j]);
+        }
+    }
+    return C;
+}
