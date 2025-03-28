@@ -3,7 +3,7 @@ To build and run this program you must run the following commands (Mac):
 1) "mkdir build" (Create the build folder)
 2) "cd build" (Navigate tot the build folder)
 3) "cmake .." (Run Cmake and point it to the parent directory)
-4) "cmake --build" . (Build the project)
+4) "cmake --build ." (Build the project)
 5) "./HPC_ASSIGNMENT_B" (Run the executable)
 */
 
