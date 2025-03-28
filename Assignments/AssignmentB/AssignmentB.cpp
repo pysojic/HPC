@@ -7,6 +7,12 @@ To build and run this program you must run the following commands (Mac):
 5) "./HPC_ASSIGNMENT_B" (Run the executable)
 */
 
+/*
+▶ Write a function to multiply two NxN matrices.
+▶ Use the function you wrote to multiply two 100x100 matrices.
+▶ Measure the execution time.
+*/
+
 #include <iostream>
 #include <Eigen/Dense>
 #include "../Utilities/StopWatch.hpp"
