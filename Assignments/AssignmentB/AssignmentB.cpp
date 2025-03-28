@@ -1,3 +1,12 @@
+/* 
+To build and run this program you must run the following commands (Mac):
+1) "mkdir build" (Create the build folder)
+2) "cd build" (Navigate tot the build folder)
+3) "cmake .." (Run Cmake and point it to the parent directory)
+4) "cmake --build" . (Build the project)
+5) "./HPC_ASSIGNMENT_B" (Run the executable)
+*/
+
 #include <iostream>
 #include <Eigen/Dense>
 #include "../Utilities/StopWatch.hpp"
@@ -7,7 +16,7 @@
 int main()
 {
     Eigen::Matrix<int, 100, 100> matrix1 = Eigen::MatrixXi::NullaryExpr(100, 100, [] { return std::rand() % 10; });
-    Eigen::Matrix<int, 100, 100> matrix2 = Eigen::MatrixXi::NullaryExpr(100, 100, [] { return 2;});
+    Eigen::Matrix<int, 100, 100> matrix2 = Eigen::MatrixXi::NullaryExpr(100, 100, [] { return std::rand() % 10;;});
 
     // std::cout << matrix1 << std::endl;
     // std::cout << matrix2 << std::endl;

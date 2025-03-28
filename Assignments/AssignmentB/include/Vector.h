@@ -88,7 +88,7 @@ Vector<T, N>::Vector(const Vector<T,N>& vec) : m_arr{}
 template <typename T, size_t N>
 Vector<T, N>::Vector(std::initializer_list<T> list) : m_arr{}
 {
-	std::copy(list.begin(), list.end(), this->begin());
+	std::copy(list.begin(), list.end(), begin());
 }
 
 template <typename T, size_t N>
@@ -155,7 +155,7 @@ template <typename T, size_t N>
 Vector<T, N> Vector<T, N>::operator+ (const Vector& other) const
 {
 	Vector temp;
-	std::transform(this->begin(), this->end(), other.begin(), temp.begin(), [](const auto& a, const auto& b) {return a + b; });
+	std::transform(begin(), end(), other.begin(), temp.begin(), [](const auto& a, const auto& b) {return a + b; });
 	return temp;
 }
 
@@ -163,7 +163,7 @@ template <typename T, size_t N>
 Vector<T, N> Vector<T, N>::operator- (const Vector& other) const
 {
 	Vector temp;
-	std::transform(this->begin(), this->end(), other.begin(), temp.begin(), [](const auto& a, const auto& b) {return a - b; });
+	std::transform(begin(), end(), other.begin(), temp.begin(), [](const auto& a, const auto& b) {return a - b; });
 	return temp;
 }
 
@@ -171,7 +171,7 @@ template <typename T, size_t N>
 Vector<T, N> Vector<T, N>::operator-() const
 {
 	Vector temp;
-	std::transform(this->begin(), this->end(), temp.begin(), [](const auto& a) {return -a; });
+	std::transform(begin(), end(), temp.begin(), [](const auto& a) {return -a; });
 	return temp;
 }
 
@@ -185,7 +185,7 @@ T Vector<T, N>::dot_product(const Vector& other) const
 template <typename T, size_t N>
 void Vector<T, N>::modify(const std::function<T(T&)>& f)
 {
-	std::transform(this->begin(), this->end(), this->begin(), f);
+	std::transform(begin(), end(), begin(), f);
 }
 
 template <typename T, size_t N>
