@@ -22,7 +22,7 @@ To build and run this program you must run the following commands (Mac):
 int main()
 {
     Eigen::Matrix<int, 100, 100> matrix1 = Eigen::MatrixXi::NullaryExpr(100, 100, [] { return std::rand() % 10; });
-    Eigen::Matrix<int, 100, 100> matrix2 = Eigen::MatrixXi::NullaryExpr(100, 100, [] { return std::rand() % 10;;});
+    Eigen::Matrix<int, 100, 100> matrix2 = Eigen::MatrixXi::NullaryExpr(100, 100, [] { return std::rand() % 10;});
 
     // std::cout << matrix1 << std::endl;
     // std::cout << matrix2 << std::endl;
@@ -47,6 +47,11 @@ int main()
         ScopedTimer timer{"Matrix multiplication duration (STL): "};
         mult = matrix_mult(m, m2); 
     }   
+
+    Matrix<int, 2, 2> m3{{1,2},{3,4}};
+    Matrix<int, 2, 2> m4{{5,6},{7,8}};
+
+    matrix_mult(m3, m4).print();
 
     // mult.print();
 }
