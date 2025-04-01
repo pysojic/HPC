@@ -16,7 +16,7 @@ where, N = total number of points generated and M = number of random points insi
 #include <format>
 #include <future>
 #include <thread>
-#include "../Utilities/StopWatch.hpp"
+#include "StopWatch.hpp"
 
 // Multi Threaded
 
@@ -45,7 +45,7 @@ int main()
     ScopedTimer sc {"Duration: "};
 
     size_t N = 1'000'000'000;
-    size_t NThreads = 10;
+    size_t NThreads = std::thread::hardware_concurrency();
 
     std::vector<std::future<size_t>> futures;
     std::vector<std::thread> threads;
