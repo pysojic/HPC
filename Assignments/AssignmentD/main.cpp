@@ -1,5 +1,5 @@
 /*
-▶Calculating the value of π using Monte Carlo involves the following steps:
+▶ Calculating the value of π using Monte Carlo involves the following steps:
 1. Assume the circle is centered at coordinates (0, 0).
 2. Generate N random points with coordinates (x, y) where x and y are independently drawn from a 
    uniform distribution over the interval [-1, 1].
@@ -14,30 +14,88 @@ where, N = total number of points generated and M = number of random points insi
 #include <iostream>
 #include <random>
 #include <format>
+#include <future>
+#include <thread>
+#include "../Utilities/StopWatch.hpp"
+
+// Multi Threaded
+
+void simulate_paths(std::promise<size_t>&& res, int N)
+{
+    size_t M = 0;
+
+    std::random_device rd;
+    std::mt19937_64 mt(rd());
+    std::uniform_real_distribution unif(-1.0, 1.0);
+
+    for (size_t i = 0; i < N; ++i)
+    {
+        double x = unif(mt);
+        double y = unif(mt);
+
+        if (x*x + y*y <= 1.0) 
+            ++M;
+    }
+
+    res.set_value(M);
+}
 
 int main()
 {
-    std::array<size_t, 10> trials_numbers{100, 1'000, 5000, 10'000, 50000, 100'000, 1'000'000, 10'000'000, 50'000'000, 100'000'000};
+    ScopedTimer sc {"Duration: "};
 
-    for (auto N : trials_numbers)
+    size_t N = 1'000'000'000;
+    size_t NThreads = 10;
+
+    std::vector<std::future<size_t>> futures;
+    std::vector<std::thread> threads;
+    threads.reserve(NThreads);
+
+    for (size_t i = 0; i < NThreads; ++i)
     {
-        size_t M = 0;
-
-        std::random_device rd;
-        std::mt19937_64 mt(rd());
-        std::uniform_real_distribution unif(-1.0, 1.0);
-
-        for (size_t i = 0; i < N; ++i)
-        {
-            double x = unif(mt);
-            double y = unif(mt);
-
-            if (std::sqrt(x*x + y*y) <= 1.0) 
-                ++M;
-        }
-
-        double pi = static_cast<double>(M) / N * 4;
-
-        std::cout << std::format("The value of pi with {} trials is approximately: {}", N, pi) << std::endl;
+        std::promise<size_t> prom;
+        futures.push_back(prom.get_future());
+        threads.emplace_back(simulate_paths, std::move(prom), N / NThreads);
     }
+
+    for (auto& t : threads)
+        if (t.joinable())
+            t.join();
+
+    size_t M = 0;
+    for (auto& fut : futures)
+    {
+        M += fut.get();
+    }
+
+    double pi = static_cast<double>(M) / N * 4;
+
+    std::cout << pi << std::endl;
 }
+
+// Single threaded
+
+// int main()
+// {
+//     ScopedTimer sc {"Duration: "};
+    
+//     size_t N = 1'000'000'000;
+//     size_t M = 0;
+
+//     std::random_device rd;
+//     std::mt19937_64 mt(rd());
+//     std::uniform_real_distribution unif(-1.0, 1.0);
+
+//     for (size_t i = 0; i < N; ++i)
+//     {
+//         double x = unif(mt);
+//         double y = unif(mt);
+
+//         if (std::sqrt(x*x + y*y) <= 1.0) 
+//             ++M;
+//     }
+
+//     double pi = static_cast<double>(M) / N * 4;
+
+//     std::cout << std::format("The value of pi with {} trials is approximately: {}", N, pi) << std::endl;
+// }
