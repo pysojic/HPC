@@ -7,5 +7,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(ASSIGNMENT2 main.cpp)
 
-target_compile_options(ASSIGNMENT2 PRIVATE -O2 -march=native)
+target_compile_options(ASSIGNMENT2 PRIVATE -O3 -march=native)
 
